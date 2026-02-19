@@ -40,7 +40,7 @@ const Hero = () => {
           <div className="mt-10 flex flex-col sm:flex-row justify-center gap-5">
             <Link
               to="/donate"
-              className="bg-red-500 rounded-full border-2 flex w-[10] items-center justify-center gap-2 hover:bg-red-600 transition px-8 py-3 text-lg font-semibold shadow-lg"
+              className="bg-red-500 rounded-full border-2 inline-flex items-center justify-center gap-2 hover:bg-red-600 transition px-8 py-3 text-lg font-semibold shadow-lg"
             >
               <FaHeart className="h-4 w-4" />
               Donate Now

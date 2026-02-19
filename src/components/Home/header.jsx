@@ -46,7 +46,7 @@ const Header = () => {
 
           <Link
             to="/donate"
-            className="bg-red-500 rounded-full border-2 flex w-[10] items-center justify-center gap-2 text-white px-5 py-2  hover:bg-red-700 transition"
+            className="bg-red-500 rounded-full border-2 inline-flex items-center justify-center gap-2 text-white px-5 py-2  hover:bg-red-700 transition"
           >
             <FaHeart className="h-4 w-4" />
             Donate
@@ -112,7 +112,7 @@ const Header = () => {
           <Link
             to="/donate"
             onClick={() => setIsOpen(false)}
-            className="block bg-red-500 flex w-[10] items-center justify-center gap-2 text-white px-4 py-2 rounded-lg text-center hover:bg-red-600"
+            className="block bg-red-500 inline-flex items-center justify-center gap-2 text-white px-4 py-2 rounded-lg text-center hover:bg-red-600"
           >
             <FaHeart className="h-4 w-4" />
             Donate
