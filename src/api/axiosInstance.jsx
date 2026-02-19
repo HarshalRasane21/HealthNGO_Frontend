@@ -1,8 +1,11 @@
 import axios from "axios";
 
+
+const API_URL = import.meta.env.VITE_API_URL;
+
 // CREATE api connection
 const axiosInstance = axios.create({
-  baseURL: "https://healthngo-backend-api.onrender.com/api",
+  baseURL: `${API_URL}/api`,
   headers: {
     "Content-Type": "application/json",
   },
