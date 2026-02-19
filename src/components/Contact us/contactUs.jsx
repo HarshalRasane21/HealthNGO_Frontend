@@ -18,13 +18,16 @@ const ContactUs = () => {
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121059.0344739699!2d73.86296739999999!3d18.52461645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1771011506010!5m2!1sen!2sin";
 
   return (
-    <section className="bg-gray-50 py-12 h-200">
+    <section className="bg-gray-50 py-12 mb-50">
       <div className="max-w-7xl mx-auto pt-10">
         {/* Header */}
         <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">
           Contact Us
         </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+        <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-blue-600" />
+
+        <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Contact Information */}
           <div className="bg-white p-6 rounded-lg shadow-md">
             <h3 className="text-xl font-semibold text-gray-800 mb-4">

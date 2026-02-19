@@ -30,50 +30,86 @@ export const VolunteerManagement = () => {
   };
 
   return (
-    <div>
-      {/* Title */}
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Volunteer Applications</h1>
+    <div className="w-full">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+        <h1 className="text-xl sm:text-2xl font-bold">
+          Volunteer Applications
+        </h1>
       </div>
 
-      {/* Table with fetch data */}
-      <table className="w-full bg-white rounded-xl shadow border border-gray-400 border-collapse">
-        <thead>
-          <tr className="bg-gray-100 text-left">
-            <th className="p-4 border border-gray-400 px-4 py-2">Name</th>
-            <th className="border border-gray-400 px-4 py-2">Phone</th>
-            <th className=" border border-gray-400 px-4 py-2">Email</th>
-            <th className=" border border-gray-400 px-4 py-2">Skills</th>
-            <th className=" border border-gray-400 px-4 py-2">Availability</th>
-            <th className="border border-gray-400 px-4 py-2">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {/* Mapping on fetch data */}
-          {volunteers.map((v) => (
-            <tr key={v.id} className="border-t">
-              <td className="p-4 border border-gray-400 px-4 py-2">
-                {v.full_name}
-              </td>
-              <td className=" border border-gray-400 px-4 py-2">
-                {v.phone ? v.phone : "null"}
-              </td>
-              <td className=" border border-gray-400 px-4 py-2">{v.email}</td>
-              <td className="border border-gray-400 px-4 py-2">{v.skills}</td>
-              <td className="border border-gray-400 px-4 py-2">
-                {v.availability}
-              </td>
-              <td className="flex gap-3 p-4 ">
-                {/* Delete button */}
-                <FaTrash
-                  onClick={() => handleDelete(v.id)}
-                  className="text-red-600 cursor-pointer"
-                />
-              </td>
+      {/* Desktop Table */}
+      <div className="hidden md:block overflow-x-auto">
+        <table className="min-w-full bg-white rounded-xl shadow border border-gray-200">
+          <thead>
+            <tr className="bg-gray-100 text-left">
+              <th className="p-4 border-b">Name</th>
+              <th className="p-4 border-b">Phone</th>
+              <th className="p-4 border-b">Email</th>
+              <th className="p-4 border-b">Skills</th>
+              <th className="p-4 border-b">Availability</th>
+              <th className="p-4 border-b">Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {volunteers.map((v) => (
+              <tr key={v.id} className="border-t hover:bg-gray-50 transition">
+                <td className="p-4 font-medium">{v.full_name}</td>
+                <td className="p-4">{v.phone || "—"}</td>
+                <td className="p-4 break-all">{v.email}</td>
+                <td className="p-4 max-w-xs truncate">{v.skills}</td>
+                <td className="p-4">{v.availability}</td>
+                <td className="p-4">
+                  <FaTrash
+                    onClick={() => handleDelete(v.id)}
+                    className="text-red-600 cursor-pointer hover:scale-110 transition"
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Mobile Card Layout */}
+      <div className="md:hidden space-y-4">
+        {volunteers.map((v) => (
+          <div key={v.id} className="bg-white shadow rounded-lg p-4 space-y-3">
+            <div>
+              <p className="text-sm text-gray-500">Name</p>
+              <p className="font-semibold">{v.full_name}</p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-500">Phone</p>
+              <p>{v.phone || "—"}</p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-500">Email</p>
+              <p className="break-all">{v.email}</p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-500">Skills</p>
+              <p>{v.skills}</p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-500">Availability</p>
+              <p>{v.availability}</p>
+            </div>
+
+            <div className="flex justify-end pt-2">
+              <FaTrash
+                onClick={() => handleDelete(v.id)}
+                className="text-red-600 cursor-pointer text-lg"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

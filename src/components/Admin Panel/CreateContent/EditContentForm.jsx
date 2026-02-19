@@ -9,15 +9,22 @@ const EditContentForm = ({ type, existingData, onClose }) => {
   {
     /* useState for manage states */
   }
-  const [formData, setFormData] = useState(existingData || {});
+  const [formData, setFormData] = useState(() => existingData || {});
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(existingData?.image || null);
+
+
+
 
   {
     /* Handle form input data */
   }
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+  setFormData((prev) => ({
+    ...prev,
+    [name]: value,
+  }));
   };
 
   {
@@ -73,119 +80,134 @@ const EditContentForm = ({ type, existingData, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-      <div className="bg-white w-full max-w-2xl p-8 rounded-2xl shadow-xl overflow-y-auto max-h-[90vh]">
-        {/* Heading */}
-        <h2 className="text-2xl font-bold mb-6 capitalize">Edit {type}</h2>
+    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
+  <div className="bg-white w-full max-w-2xl rounded-2xl shadow-xl overflow-y-auto max-h-[95vh]">
 
-        {/* Form for editing data */}
-        <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Title */}
+    {/* Header */}
+    <div className="px-6 py-4 border-b">
+      <h2 className="text-xl sm:text-2xl font-bold capitalize">
+        Edit {type}
+      </h2>
+    </div>
+
+    {/* Form */}
+    <form onSubmit={handleSubmit} className="p-6 space-y-5">
+
+      {/* Title */}
+      <InputField
+        label="Title"
+        name="title"
+        value={formData.title || ""}
+        handleChange={handleChange}
+      />
+
+      {/* Blog Fields */}
+      {type === "blog" && (
+        <>
           <InputField
-            label="Title"
-            name="title"
-            value={existingData.title || ""}
+            label="Category"
+            name="category"
+            value={formData.category || ""}
             handleChange={handleChange}
           />
 
-          {/* Blog input field*/}
-          {type === "blog" && (
-            <>
-              <InputField
-                label="Category"
-                name="category"
-                value={existingData.category || ""}
-                handleChange={handleChange}
-              />
-              <TextareaField
-                label="Content"
-                name="content"
-                value={existingData.content || ""}
-                handleChange={handleChange}
-              />
-            </>
-          )}
+          <TextareaField
+            label="Content"
+            name="content"
+            value={formData.content || ""}
+            handleChange={handleChange}
+          />
+        </>
+      )}
 
-          {/* Event input field*/}
-          {type === "event" && (
-            <>
-              <InputField
-                label="Event Date"
-                name="event_date"
-                type="date"
-                value={existingData.event_date?.slice(0, 10) || ""}
-                handleChange={handleChange}
-              />
-              <InputField
-                label="Location"
-                name="location"
-                value={existingData.location || ""}
-                handleChange={handleChange}
-              />
-              <TextareaField
-                label="Description"
-                name="description"
-                value={existingData.description || ""}
-                handleChange={handleChange}
-              />
-            </>
-          )}
+      {/* Event Fields */}
+      {type === "event" && (
+        <>
+          <InputField
+            label="Event Date"
+            name="event_date"
+            type="date"
+            value={formData.event_date?.slice(0, 10) || ""}
+            handleChange={handleChange}
+          />
 
-          {/* Program input field */}
-          {type === "program" && (
-            <TextareaField
-              label="Description"
-              name="description"
-              value={existingData.description || ""}
-              handleChange={handleChange}
-            />
-          )}
+          <InputField
+            label="Location"
+            name="location"
+            value={formData.location || ""}
+            handleChange={handleChange}
+          />
 
-          {/* Image Upload */}
+          <TextareaField
+            label="Description"
+            name="description"
+            value={formData.description || ""}
+            handleChange={handleChange}
+          />
+        </>
+      )}
+
+      {/* Program Field */}
+      {type === "program" && (
+        <TextareaField
+          label="Description"
+          name="description"
+          value={formData.description || ""}
+          handleChange={handleChange}
+        />
+      )}
+
+      {/* Image Upload Section */}
+      <div className="space-y-3">
+        <label className="block font-medium text-gray-700">
+          Replace Image (optional)
+        </label>
+
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleImageChange}
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
+        />
+
+        {imagePreview && (
           <div>
-            <label className="block mb-2 font-medium text-gray-700">
-              Replace Image (optional)
-            </label>
-
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-              className="w-full border border-gray-300 rounded-lg px-4 py-2"
+            <p className="text-sm text-gray-500 mb-2">
+              Current Image Preview
+            </p>
+            <img
+              src={imagePreview}
+              alt="Preview"
+              className="w-full h-48 sm:h-56 object-cover rounded-lg shadow"
             />
-
-            {imagePreview && (
-              <div className="mt-4">
-                <p className="text-sm text-gray-500 mb-2">Current Image:</p>
-                <img
-                  src={imagePreview}
-                  alt="Preview"
-                  className="w-full h-56 object-cover rounded-lg shadow"
-                />
-              </div>
-            )}
           </div>
-
-          {/* Buttons to update and cancel */}
-          <div className="flex justify-end gap-4 pt-4">
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-6 py-2 rounded-lg border border-gray-300"
-            >
-              Cancel
-            </button>
-
-            <button
-              type="submit"
-              className="px-6 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700"
-            >
-              Update {type}
-            </button>
-          </div>
-        </form>
+        )}
       </div>
-    </div>
+
+      {/* Buttons */}
+      <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 pt-4 border-t">
+
+        <button
+          type="button"
+          onClick={onClose}
+          className="w-full sm:w-auto px-6 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 transition"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          className="w-full sm:w-auto px-6 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
+        >
+          Update {type}
+        </button>
+
+      </div>
+
+    </form>
+  </div>
+</div>
+
   );
 };
 

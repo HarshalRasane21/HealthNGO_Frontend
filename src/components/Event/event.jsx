@@ -26,13 +26,21 @@ const Event = () => {
     <div className="bg-blue-200 min-h-screen py-20">
       {/* Header */}
       <div className="max-w-7xl mx-auto px-6 text-center mb-16">
-        <h1 className="text-4xl font-bold text-green-700">
-          Upcoming Events & Health Camps
+
+        <span className="inline-block rounded-full bg-blue-100 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-blue-600">
+            Events
+          </span>
+
+        <h1 className="mt-4 text-4xl font-bold text-black-700 md:text-5xl">
+          Upcoming <span className="text-blue-600">Events</span> &{" "}
+            <span className="text-green-500">Health Camps</span>
         </h1>
         <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
           Join our community initiatives and participate in our health awareness
           drives, camps, and workshops.
         </p>
+
+        <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-blue-600" />
       </div>
 
       {/* Events Grid */}

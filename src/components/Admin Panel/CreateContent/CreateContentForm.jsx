@@ -77,11 +77,16 @@ const CreateContentForm = ({ type, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-      <div className="bg-white w-full max-w-2xl p-8 rounded-2xl shadow-xl overflow-y-auto max-h-[90vh]">
-        <h2 className="text-2xl font-bold mb-6 capitalize">Create {type}</h2>
+    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
+      <div className="bg-white w-full max-w-2xl rounded-2xl shadow-xl overflow-y-auto max-h-[95vh]">
+        {/* Header */}
+        <div className="px-6 py-4 border-b">
+          <h2 className="text-xl sm:text-2xl font-bold capitalize">
+            Create {type}
+          </h2>
+        </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="p-6 space-y-5">
           {/* Title */}
           <InputField
             label="Title"
@@ -90,7 +95,7 @@ const CreateContentForm = ({ type, onClose }) => {
             handleChange={handleChange}
           />
 
-          {/* Blog input field*/}
+          {/* Blog Fields */}
           {type === "blog" && (
             <>
               <InputField
@@ -99,13 +104,14 @@ const CreateContentForm = ({ type, onClose }) => {
                 value={formData.category || ""}
                 handleChange={handleChange}
               />
+
               <InputField
                 label="Author Name"
                 name="author"
-                type="name"
                 value={formData.author || ""}
                 handleChange={handleChange}
               />
+
               <TextareaField
                 label="Content"
                 name="content"
@@ -115,7 +121,7 @@ const CreateContentForm = ({ type, onClose }) => {
             </>
           )}
 
-          {/* Event input field*/}
+          {/* Event Fields */}
           {type === "event" && (
             <>
               <InputField
@@ -125,12 +131,14 @@ const CreateContentForm = ({ type, onClose }) => {
                 value={formData.event_date || ""}
                 handleChange={handleChange}
               />
+
               <InputField
                 label="Location"
                 name="location"
                 value={formData.location || ""}
                 handleChange={handleChange}
               />
+
               <TextareaField
                 label="Description"
                 name="description"
@@ -140,59 +148,60 @@ const CreateContentForm = ({ type, onClose }) => {
             </>
           )}
 
-          {/* Program input field  */}
+          {/* Program Fields */}
           {type === "program" && (
-            <>
-              <TextareaField
-                label="Description"
-                name="description"
-                value={formData.description || ""}
-                handleChange={handleChange}
-              />
-            </>
+            <TextareaField
+              label="Description"
+              name="description"
+              value={formData.description || ""}
+              handleChange={handleChange}
+            />
           )}
 
-          {/* Image Upload Section */}
-          <div className="flex ">
-            <label className="block mb-2 font-medium text-gray-700">
+          {/* Image Upload */}
+          <div className="space-y-3">
+            <label className="block font-medium text-gray-700">
               Upload Image
             </label>
-            <div className="relative w-full">
-              <FaCamera className="absolute left-3 mt-5 -translate-y-1/2 text-gray-500" />
+
+            <div className="relative">
+              <FaCamera className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
               <input
                 type="file"
                 accept="image/*"
                 onChange={handleImageChange}
-                className="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2"
+                className="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
                 required
               />
             </div>
+
             {imagePreview && (
-              <div className="mt-4">
-                <p className="text-sm text-gray-500 mb-2">Image Preview:</p>
+              <div>
+                <p className="text-sm text-gray-500 mb-2">Image Preview</p>
                 <img
                   src={imagePreview}
                   alt="Preview"
-                  className="w-full h-56 object-cover rounded-lg shadow"
+                  className="w-full h-48 sm:h-56 object-cover rounded-lg shadow"
                 />
               </div>
             )}
           </div>
 
-          {/* cancel button */}
-          <div className="flex justify-end gap-4 pt-4">
+          {/* Buttons */}
+          <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 pt-4 border-t">
+            {/* Cancel */}
             <button
-              type="submit"
+              type="button"
               onClick={onClose}
-              className="px-6 py-2 rounded-lg border border-gray-300"
+              className="w-full sm:w-auto px-6 py-2 rounded-lg border border-gray-300 hover:bg-gray-100 transition"
             >
               Cancel
             </button>
 
-            {/* save button */}
+            {/* Save */}
             <button
               type="submit"
-              className="px-6 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700"
+              className="w-full sm:w-auto px-6 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
             >
               Save {type}
             </button>

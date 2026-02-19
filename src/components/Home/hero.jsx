@@ -9,7 +9,7 @@ import Donatesection from "../Donation/donatesection";
 const Hero = () => {
   return (
     <>
-      <section className="relative overflow-hidden text-white pt-10">
+      <section className="relative overflow-hidden text-white">
         {/* Background Image */}
         <div className="absolute inset-0 -z-10">
           <img
@@ -21,7 +21,7 @@ const Hero = () => {
         </div>
 
         {/* Content Container */}
-        <div className="relative max-w-7xl ml-30 px-2 py-32 text-center">
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 sm:py-28 lg:py-32 text-center">
           {/* Main Heading */}
           <h1 className="text-4xl md:text-6xl font-bold leading-tight">
             Promoting Health.
@@ -37,7 +37,7 @@ const Hero = () => {
           </p>
 
           {/* Action Buttons */}
-          <div className="mt-10 flex flex-col sm:flex-row justify-center gap-5">
+          <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5">
             <Link
               to="/donate"
               className="bg-red-500 rounded-full border-2 inline-flex items-center justify-center gap-2 hover:bg-red-600 transition px-8 py-3 text-lg font-semibold shadow-lg"

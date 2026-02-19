@@ -40,6 +40,8 @@ const Programs = () => {
             We work holistically with vulnerable communities to create lasting
             impact.
           </p>
+
+          <div className="mx-auto mt-4 h-1 w-16 rounded-full bg-blue-600" />
         </motion.div>
 
         {/* Mapping on programs */}

@@ -17,9 +17,9 @@ const About = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="relative  max-w-7xl ml-30 px-2 py-64 mb-16 text-center text-white ">
+      <section className="relative  max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-50 sm:py-28 lg:py-32 text-center text-white ">
         <div className="max-w-5xl mx-auto px-6">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-orange-300">
             About Our Organization
           </h1>
           <p className="mt-6 text-xl md:text-2xl max-w-3xl mx-auto opacity-90">
