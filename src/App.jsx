@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import MainLayout from "./MainLayout";
 
 import Hero from "./components/Home/hero";
 import About from "./components/About us/about";
@@ -14,16 +13,17 @@ import ContactUs from "./components/Contact us/contactUs";
 import DetailsPage from "./components/Details/DetailsPage";
 import AllArticles from "./components/Blog/AllArticles";
 import DonationForm from "./components/Donation/donationForm";
-import AdminLogin from "./components/Admin Panel/AdminLogin/login";
-import AdminPanel from "./components/Admin Panel/AdminPanel";
-import ProtectedRoute from "./components/ProtectedRoute";
+import Header from "./components/Home/header";
+import Footer from "./components/Home/footer";
 
 const App = () => {
   return (
+    <>
+    
     <BrowserRouter>
+    <Header/>
       <Routes>
-        {/* Routes with Header & Footer */}
-        <Route element={<MainLayout />}>
+        
           <Route path="/" element={<Hero />} />
           <Route path="/about" element={<About />} />
           <Route path="/programs" element={<Programs />} />
@@ -38,22 +38,12 @@ const App = () => {
             path="/donationForm/:requestedAmount"
             element={<DonationForm />}
           />
-        </Route>
-
-        {/* Routes without header and footer */}
-        <Route path="/admin-login" element={<AdminLogin />} />
-
-        {/* Route with Protection Layer only authorize person can access*/}
-        <Route
-          path="/AdminPanel"
-          element={
-            <ProtectedRoute>
-              <AdminPanel />
-            </ProtectedRoute>
-          }
-        />
+        
       </Routes>
+    <Footer/>
     </BrowserRouter>
+    
+    </>
   );
 };
 
